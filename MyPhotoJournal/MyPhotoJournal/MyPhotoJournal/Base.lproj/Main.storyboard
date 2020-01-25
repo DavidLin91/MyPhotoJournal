@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" id="BYZ-38-t0r" customClass="MainVC" customModule="MyPhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-Kw-yia">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <color key="backgroundColor" red="0.95970195530000002" green="0.94210463759999996" blue="0.86273360249999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <items>
+                                    <barButtonItem width="87" style="plain" systemItem="fixedSpace" id="ca5-oh-DLY" userLabel="Left Space"/>
+                                    <barButtonItem title="add button" image="plus" catalog="system" id="hdF-ky-TTF">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="155" style="plain" systemItem="fixedSpace" id="Yad-TQ-mkK" userLabel="Mid Space">
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem title="edit button" image="gear" catalog="system" id="FqW-Me-aY8">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="JZX-qQ-3aj" userLabel="Right Space"/>
+                                </items>
+                                <color key="barTintColor" red="0.27133899083147217" green="0.26700558711654737" blue="0.24681328603767075" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-aE-lvs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813.00000000000023"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nn3-Kw-yia" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0P9-Gc-Wfi"/>
+                            <constraint firstItem="k9u-aE-lvs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9Oh-Rg-ozl"/>
+                            <constraint firstItem="nn3-Kw-yia" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DVp-ZV-FhO"/>
+                            <constraint firstItem="nn3-Kw-yia" firstAttribute="top" secondItem="k9u-aE-lvs" secondAttribute="bottom" symbolic="YES" id="QLT-jk-IKv"/>
+                            <constraint firstItem="k9u-aE-lvs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TPF-LC-aqN"/>
+                            <constraint firstItem="k9u-aE-lvs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fyN-gH-9bm"/>
+                            <constraint firstItem="nn3-Kw-yia" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="u5g-6D-Lhl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IsF-2N-ILT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="576.81159420289862" y="97.767857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="mainBackground" width="564" height="1002"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

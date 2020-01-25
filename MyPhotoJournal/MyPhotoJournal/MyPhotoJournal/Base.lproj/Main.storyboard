@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="mainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-aE-lvs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813.00000000000023"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-Kw-yia">
@@ -29,6 +29,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="addImageButtonPressed:" destination="BYZ-38-t0r" id="U73-Qd-bD0"/>
+                                            <segue destination="w20-Nj-2li" kind="presentation" id="LsS-3F-Iz1"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="155" style="plain" systemItem="fixedSpace" id="Yad-TQ-mkK" userLabel="Mid Space">
@@ -38,6 +39,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" id="gXu-CC-ve3"/>
+                                            <segue destination="DPF-Ha-ut1" kind="presentation" id="sW1-8o-Fzs"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="JZX-qQ-3aj" userLabel="Right Space"/>
@@ -120,12 +122,122 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="576.81159420289862" y="97.767857142857139"/>
+            <point key="canvasLocation" x="1143" y="-529"/>
+        </scene>
+        <!--SettingsVC-->
+        <scene sceneID="TRW-Jx-waG">
+            <objects>
+                <viewController id="DPF-Ha-ut1" customClass="SettingsVC" customModule="MyPhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wur-c6-PBW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.95970195530000002" green="0.94210463759999996" blue="0.86273360249999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="d4G-WV-eOR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dv8-Dr-BwG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="125"/>
+        </scene>
+        <!--Add ImageVC-->
+        <scene sceneID="XmG-2q-0M1">
+            <objects>
+                <viewController id="w20-Nj-2li" customClass="AddImageVC" customModule="MyPhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3YL-jO-5pq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-O2-cr2">
+                                <rect key="frame" x="0.0" y="759" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem width="59" style="plain" systemItem="fixedSpace" id="Ggs-pk-vny"/>
+                                    <barButtonItem title="Photos" id="gwb-Xf-SNe">
+                                        <connections>
+                                            <action selector="selectPhotoButtonClicked:" destination="w20-Nj-2li" id="u09-yj-XzK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3ZK-hN-5p1"/>
+                                    <barButtonItem image="camera.fill" catalog="system" id="jPX-sd-6lo">
+                                        <connections>
+                                            <action selector="cameraButtonClicked:" destination="w20-Nj-2li" id="Luh-qA-WGX"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="vUo-Xv-flY"/>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.27133899080000001" green="0.2670055871" blue="0.24681328599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-vC-Ozm">
+                                <rect key="frame" x="0.0" y="101" width="414" height="297.5"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="5R3-9Q-dKv"/>
+                                    <constraint firstAttribute="height" constant="300" id="7u5-ei-Nyc"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44b-EH-gN6">
+                                <rect key="frame" x="10" y="420" width="394" height="309"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAS-Qv-mvF" userLabel="Top Tool Bar">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="tMY-b4-kQI"/>
+                                    <barButtonItem title="Cancel" id="CIs-em-fan" userLabel="Cancel Button">
+                                        <connections>
+                                            <action selector="cancelButtonClicked:" destination="w20-Nj-2li" id="pON-qx-9IT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Gkd-yc-0ol"/>
+                                    <barButtonItem title="Save" id="fKT-Bu-NTT">
+                                        <connections>
+                                            <action selector="savedButtonClicked:" destination="w20-Nj-2li" id="fZu-zr-sRe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Jeg-kA-pBQ"/>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.27133899080000001" green="0.2670055871" blue="0.24681328599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95970195530000002" green="0.94210463759999996" blue="0.86273360249999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="44b-EH-gN6" firstAttribute="leading" secondItem="S53-ds-VAd" secondAttribute="leading" constant="10" id="4Bw-dD-Gvl"/>
+                            <constraint firstItem="ivY-O2-cr2" firstAttribute="bottom" secondItem="S53-ds-VAd" secondAttribute="bottom" id="4Wc-I7-5MS"/>
+                            <constraint firstItem="ivY-O2-cr2" firstAttribute="trailing" secondItem="S53-ds-VAd" secondAttribute="trailing" id="AaN-xV-VGj"/>
+                            <constraint firstItem="ivY-O2-cr2" firstAttribute="top" secondItem="44b-EH-gN6" secondAttribute="bottom" constant="30" id="G5m-aD-Fok"/>
+                            <constraint firstItem="S53-ds-VAd" firstAttribute="trailing" secondItem="44b-EH-gN6" secondAttribute="trailing" constant="10" id="OWW-Ij-fyb"/>
+                            <constraint firstItem="44b-EH-gN6" firstAttribute="top" secondItem="WHV-vC-Ozm" secondAttribute="bottom" constant="20" id="U24-aV-udo"/>
+                            <constraint firstItem="ivY-O2-cr2" firstAttribute="leading" secondItem="S53-ds-VAd" secondAttribute="leading" id="cJE-Q6-sC0"/>
+                            <constraint firstItem="WHV-vC-Ozm" firstAttribute="trailing" secondItem="S53-ds-VAd" secondAttribute="trailing" id="iqT-t9-8LK"/>
+                            <constraint firstItem="WHV-vC-Ozm" firstAttribute="top" secondItem="S53-ds-VAd" secondAttribute="top" constant="100" id="qc6-3t-9LT"/>
+                            <constraint firstItem="WHV-vC-Ozm" firstAttribute="leading" secondItem="S53-ds-VAd" secondAttribute="leading" id="vKD-P3-e4l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S53-ds-VAd"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="jPX-sd-6lo" id="8sD-Th-D15"/>
+                        <outlet property="cancelButton" destination="kAS-Qv-mvF" id="EZC-a4-ZtX"/>
+                        <outlet property="photo" destination="WHV-vC-Ozm" id="YCm-6u-uju"/>
+                        <outlet property="saveButton" destination="fKT-Bu-NTT" id="Ekg-fN-haa"/>
+                        <outlet property="selectPhotoButton" destination="ivY-O2-cr2" id="X1S-Zf-RvP"/>
+                        <outlet property="textField" destination="44b-EH-gN6" id="FQG-Bq-B13"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="09s-Lt-U4o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757.97101449275374" y="124.55357142857142"/>
         </scene>
     </scenes>
     <resources>
+        <image name="camera.fill" catalog="system" width="64" height="48"/>
         <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="mainBackground" width="564" height="1002"/>
+        <image name="mainBackground" width="1080" height="1920"/>
         <image name="photo" catalog="system" width="64" height="46"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>

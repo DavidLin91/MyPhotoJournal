@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6307E36123DCBAA700E83CD7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307E36023DCBAA700E83CD7 /* CollectionViewCell.swift */; };
+		6307E36423DCD87B00E83CD7 /* DataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 6307E36323DCD87B00E83CD7 /* DataPersistence */; };
+		6307E36623DCD95500E83CD7 /* AddImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307E36523DCD95500E83CD7 /* AddImageVC.swift */; };
+		6307E36823DCD96400E83CD7 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307E36723DCD96400E83CD7 /* SettingsVC.swift */; };
 		639AF60123DC9D0600FE4ABF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AF60023DC9D0600FE4ABF /* AppDelegate.swift */; };
 		639AF60323DC9D0600FE4ABF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AF60223DC9D0600FE4ABF /* SceneDelegate.swift */; };
 		639AF60523DC9D0600FE4ABF /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AF60423DC9D0600FE4ABF /* MainVC.swift */; };
@@ -29,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		6307E36023DCBAA700E83CD7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		6307E36523DCD95500E83CD7 /* AddImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageVC.swift; sourceTree = "<group>"; };
+		6307E36723DCD96400E83CD7 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		639AF5FD23DC9D0600FE4ABF /* MyPhotoJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPhotoJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639AF60023DC9D0600FE4ABF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639AF60223DC9D0600FE4ABF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6307E36423DCD87B00E83CD7 /* DataPersistence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +112,8 @@
 			children = (
 				639AF60423DC9D0600FE4ABF /* MainVC.swift */,
 				6307E36023DCBAA700E83CD7 /* CollectionViewCell.swift */,
+				6307E36523DCD95500E83CD7 /* AddImageVC.swift */,
+				6307E36723DCD96400E83CD7 /* SettingsVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +134,9 @@
 			dependencies = (
 			);
 			name = MyPhotoJournal;
+			packageProductDependencies = (
+				6307E36323DCD87B00E83CD7 /* DataPersistence */,
+			);
 			productName = MyPhotoJournal;
 			productReference = 639AF5FD23DC9D0600FE4ABF /* MyPhotoJournal.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +187,9 @@
 				Base,
 			);
 			mainGroup = 639AF5F423DC9D0600FE4ABF;
+			packageReferences = (
+				6307E36223DCD87A00E83CD7 /* XCRemoteSwiftPackageReference "DataPersistence" */,
+			);
 			productRefGroup = 639AF5FE23DC9D0600FE4ABF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,7 +228,9 @@
 				639AF60523DC9D0600FE4ABF /* MainVC.swift in Sources */,
 				639AF60123DC9D0600FE4ABF /* AppDelegate.swift in Sources */,
 				6307E36123DCBAA700E83CD7 /* CollectionViewCell.swift in Sources */,
+				6307E36623DCD95500E83CD7 /* AddImageVC.swift in Sources */,
 				639AF60323DC9D0600FE4ABF /* SceneDelegate.swift in Sources */,
+				6307E36823DCD96400E83CD7 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +497,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6307E36223DCD87A00E83CD7 /* XCRemoteSwiftPackageReference "DataPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/DataPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6307E36323DCD87B00E83CD7 /* DataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6307E36223DCD87A00E83CD7 /* XCRemoteSwiftPackageReference "DataPersistence" */;
+			productName = DataPersistence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 639AF5F523DC9D0600FE4ABF /* Project object */;
 }

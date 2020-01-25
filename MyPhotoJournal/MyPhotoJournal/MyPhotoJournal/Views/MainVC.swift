@@ -27,9 +27,6 @@ class MainVC: UIViewController {
     
     
     @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
-        let imagePickerVC = UIImagePickerController()
-        imagePickerVC.delegate = self
-        present(imagePickerVC, animated: true)
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
@@ -59,12 +56,4 @@ extension MainVC: UICollectionViewDataSource {
     }
 }
 
-extension MainVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            return
-        }
-        images.append(image)
-        dismiss(animated: true, completion: nil)
-    }
-}
+

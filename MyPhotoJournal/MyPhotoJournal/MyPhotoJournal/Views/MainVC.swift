@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var images = [UIImage]() {
+    private let dataPersistance = PersistenceHelper(filename: "images.plist")
+    
+    var images = [PhotoJournal]() {
         didSet {
             collectionView.reloadData()
         }
     }
     
+    var selectedImage: UIImage? {
+          didSet {
+           //   appendPhoto()
+          }
+      }
     
     override func viewDidLoad() {
         super.viewDidLoad()

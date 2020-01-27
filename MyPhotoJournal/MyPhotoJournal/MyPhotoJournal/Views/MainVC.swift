@@ -22,7 +22,7 @@ class MainVC: UIViewController {
     
     var selectedImage: UIImage? {
           didSet {
-           //   appendPhoto()
+              appendPhoto()
           }
       }
     
@@ -30,15 +30,39 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
+        loadImages()
     }
     
     
     
-    @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
+    func loadImages() {
+        do {
+            images = try dataPersistance.loadPhotos()
+        } catch {
+            print(error)
+        }
     }
     
-    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
+    private func appendPhoto() {
+        guard let image = selectedImage else {
+            return
+        }
         
+        let size = UIScreen.main.bounds.size
+        let rect = AVMakeRect(aspectRatio: image.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
+        let thumbnail = image.resizeImage(to: rect.size.width, height: rect.size.height)
+        guard let imageData = thumbnail.jpegData(compressionQuality: 1.0) else {return}
+        
+        let photo = PhotoJournal(name: "", imageData: imageData, dateCreated: Date())
+        images.insert(photo, at: 0)
+        let indexPath = IndexPath(row:0 , section: 0)
+        collectionView.insertItems(at: [indexPath])
+        
+        do {
+            try dataPersistance.create(photo: photo)
+        } catch {
+            print(error)
+        }
     }
     
     
@@ -59,7 +83,8 @@ extension MainVC: UICollectionViewDataSource {
             fatalError("Could not dequeue Collection View Cell")
         }
         let image = images[indexPath.row]
-        cell.imageView.image = image
+        cell.configureCell(for: image)
+        cell.delegate = image
         return cell
     }
 }

@@ -14,7 +14,8 @@ extension FileManager {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
-    //documents/ filename = self
+    // function takes a filename as a parameter, appends to the document directory's URL and returns that path
+    // this path will be used to write (save) date or read (retrieve) data
     static func pathToDocumentsDirectory(with filename: String) -> URL {
         return getDocumentsDirectory().appendingPathComponent(filename)
     }

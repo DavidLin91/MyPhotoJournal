@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DataPersistenceError: Error { // conforming to the Error protocol
+enum dataPersistenceError: Error { // conforming to the Error protocol
   case savingError(Error) // associative value
   case fileDoesNotExist(String)
   case noData
@@ -36,11 +36,14 @@ class PersistenceHelper {
         // STEP 2
         // append new photo to the photos array
         photos.append(photo)
+        
+        do {
+            try save()
+        } catch {
+            throw dataPersistenceError.savingError(error)
+        }
     }
-    
-    
-    
-    
+
     
   private func save() throws {
     // STEP 1
@@ -60,7 +63,7 @@ class PersistenceHelper {
       try data.write(to: url, options: .atomic)
     } catch {
       // STEP 5
-      throw DataPersistenceError.savingError(error)
+      throw dataPersistenceError.savingError(error)
     }
   }
     
@@ -69,7 +72,7 @@ class PersistenceHelper {
     do {
       try save()
     } catch {
-      throw DataPersistenceError.savingError(error)
+      throw dataPersistenceError.savingError(error)
     }
   }
 
@@ -90,14 +93,14 @@ class PersistenceHelper {
         do {
           photos = try PropertyListDecoder().decode([PhotoJournal].self, from: data)
         } catch {
-          throw DataPersistenceError.decodingError(error)
+          throw dataPersistenceError.decodingError(error)
         }
       } else {
-        throw DataPersistenceError.noData
+        throw dataPersistenceError.noData
       }
     }
     else {
-      throw DataPersistenceError.fileDoesNotExist(filename)
+      throw dataPersistenceError.fileDoesNotExist(filename)
     }
     return photos
   }
@@ -134,7 +137,7 @@ class PersistenceHelper {
     do {
       try save()
     } catch {
-      throw DataPersistenceError.deletingError(error)
+      throw dataPersistenceError.deletingError(error)
     }
   }
 }

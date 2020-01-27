@@ -28,7 +28,6 @@
                                     <barButtonItem title="add button" image="plus" catalog="system" id="hdF-ky-TTF">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="addImageButtonPressed:" destination="BYZ-38-t0r" id="U73-Qd-bD0"/>
                                             <segue destination="w20-Nj-2li" kind="presentation" id="LsS-3F-Iz1"/>
                                         </connections>
                                     </barButtonItem>
@@ -38,7 +37,6 @@
                                     <barButtonItem title="edit button" image="gear" catalog="system" id="FqW-Me-aY8" userLabel="settings button">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" id="gXu-CC-ve3"/>
                                             <segue destination="DPF-Ha-ut1" kind="presentation" id="sW1-8o-Fzs"/>
                                         </connections>
                                     </barButtonItem>
@@ -64,7 +62,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AtA-gY-NdM">
-                                                    <rect key="frame" x="15" y="21" width="221" height="217.5"/>
+                                                    <rect key="frame" x="15" y="16" width="221" height="217.5"/>
                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="7oP-AD-bnr"/>
@@ -72,21 +70,32 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsi-0p-nKQ">
-                                                    <rect key="frame" x="15" y="250" width="221" height="80"/>
+                                                    <rect key="frame" x="15" y="265" width="221" height="65"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXb-EI-V94">
+                                                    <rect key="frame" x="206" y="227" width="30" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" title="..."/>
+                                                    <connections>
+                                                        <action selector="settingsButtonClicked:" destination="5M2-t9-VhI" eventType="touchUpInside" id="U2V-tC-TYF"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="lsi-0p-nKQ" secondAttribute="bottom" constant="15" id="8hi-kL-Fxl"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="PHr-Wa-tr8"/>
                                                 <constraint firstAttribute="trailing" secondItem="lsi-0p-nKQ" secondAttribute="trailing" constant="15" id="Wwc-ib-Rdz"/>
+                                                <constraint firstAttribute="trailing" secondItem="sXb-EI-V94" secondAttribute="trailing" constant="15" id="ZXb-eb-orW"/>
                                                 <constraint firstAttribute="trailing" secondItem="AtA-gY-NdM" secondAttribute="trailing" constant="15" id="elq-eu-Uk0"/>
                                                 <constraint firstItem="AtA-gY-NdM" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="hXX-ry-k47"/>
-                                                <constraint firstItem="AtA-gY-NdM" firstAttribute="top" secondItem="XRq-Wb-Twf" secondAttribute="top" constant="20" id="htB-tI-31o"/>
-                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="AtA-gY-NdM" secondAttribute="bottom" constant="10" id="r00-dV-QVS"/>
+                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="sXb-EI-V94" secondAttribute="bottom" constant="8" id="hiC-MK-sZR"/>
+                                                <constraint firstItem="AtA-gY-NdM" firstAttribute="top" secondItem="XRq-Wb-Twf" secondAttribute="top" constant="15" id="htB-tI-31o"/>
+                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="AtA-gY-NdM" secondAttribute="bottom" constant="30" id="r00-dV-QVS"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1143" y="-529"/>
+            <point key="canvasLocation" x="1142.0289855072465" y="-529.01785714285711"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="TRW-Jx-waG">

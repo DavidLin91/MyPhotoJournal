@@ -55,9 +55,12 @@ class AddImageVC: UIViewController {
     
     
     @IBAction func savedButtonClicked(_ sender: UIBarButtonItem) {
+        savePhoto()
+    }
+    
+    func savePhoto() {
         // setting the image being saved to UIImageView
-        let selectedImage = photo.image
-        guard let image = selectedImage else {
+        guard let thisImage = photo.image else {
             return
         }
         
@@ -65,21 +68,19 @@ class AddImageVC: UIViewController {
         let size = UIScreen.main.bounds.size
         
         // we will maintain the aspect ratio of the image
-        let rect = AVMakeRect(aspectRatio: image.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
+        let rect = AVMakeRect(aspectRatio: thisImage.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
         
         // resize image
-        let resizeImage = image.resizeImage(to: rect.size.width, height: rect.size.height)
+        let resized = thisImage.resizeImage(to: rect.size.width, height: rect.size.height)
         
-        guard let photoData = resizeImage.jpegData(compressionQuality: 1.0) else {
+        guard let photoData = resized.jpegData(compressionQuality: 1.0) else {
             return
         }
         
         let userPhoto = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textField.text!)
-        delegate?.didSave(photo: userPhoto)
+        delegate?.didSave(thisPhoto: userPhoto)
         dismiss(animated: true)
     }
-    
-    
     
 }
 
@@ -95,3 +96,12 @@ extension AddImageVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     }
 }
 
+extension UIImage{
+    func resizeImage(to width: CGFloat, height: CGFloat) -> UIImage {
+            let size = CGSize(width: width, height: height)
+            let renderer = UIGraphicsImageRenderer(size: size)
+            return renderer.image { (context) in
+                self.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+}

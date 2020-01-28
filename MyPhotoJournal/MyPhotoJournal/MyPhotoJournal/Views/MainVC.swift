@@ -16,15 +16,15 @@ class MainVC: UIViewController {
     
     var images = [PhotoJournal]() {
         didSet {
-            collectionView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
     var selectedImage: UIImage? {
-          didSet {
-              appendPhoto()
-          }
-      }
+        didSet {
+            appendPhoto()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,6 @@ class MainVC: UIViewController {
         collectionView.delegate = self
         loadImages()
     }
-    
-    
     
     func loadImages() {
         do {
@@ -65,7 +63,31 @@ class MainVC: UIViewController {
         }
     }
     
-    
+    private func showMenu(for cell: CollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let optionsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
+//            self?.showViewController(self?.photos[indexPath.row])
+        }
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
+            do{
+                try self?.dataPersistance.delete(photo: indexPath.row)
+                self?.loadImages()
+                self?.collectionView.reloadData()
+            }catch{
+                print(error)
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] (action) in
+            self?.dismiss(animated: true)
+        }
+        optionsMenu.addAction(edit)
+        optionsMenu.addAction(delete)
+        optionsMenu.addAction(cancel)
+        present(optionsMenu, animated: true, completion: nil)
+    }
     
 }
 
@@ -84,9 +106,24 @@ extension MainVC: UICollectionViewDataSource {
         }
         let image = images[indexPath.row]
         cell.configureCell(for: image)
-        cell.delegate = image
         return cell
     }
 }
 
+extension MainVC: SaveImageDelegate {
+    func didSave(photo: PhotoJournal, type: photoType ) {
+        if type == .newImage {
+            self.images.append(photo)
+                do {
+                    try dataPersistance.create(photo: photo)
+                    
+                } catch {
+                    print("could not create photo")
+                }
+        } else if type == .editImage {
+            print("")
+        }
+    
+    }
+}
 

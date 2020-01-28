@@ -85,8 +85,15 @@
                                                         <action selector="settingsButtonClicked:" destination="5M2-t9-VhI" eventType="touchUpInside" id="U2V-tC-TYF"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edL-WE-b3m">
+                                                    <rect key="frame" x="15" y="232" width="36" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="edL-WE-b3m" secondAttribute="bottom" constant="12" id="5Ai-de-w8R"/>
                                                 <constraint firstAttribute="bottom" secondItem="lsi-0p-nKQ" secondAttribute="bottom" constant="15" id="8hi-kL-Fxl"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="PHr-Wa-tr8"/>
                                                 <constraint firstAttribute="trailing" secondItem="lsi-0p-nKQ" secondAttribute="trailing" constant="15" id="Wwc-ib-Rdz"/>
@@ -95,12 +102,15 @@
                                                 <constraint firstItem="AtA-gY-NdM" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="hXX-ry-k47"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="sXb-EI-V94" secondAttribute="bottom" constant="8" id="hiC-MK-sZR"/>
                                                 <constraint firstItem="AtA-gY-NdM" firstAttribute="top" secondItem="XRq-Wb-Twf" secondAttribute="top" constant="15" id="htB-tI-31o"/>
+                                                <constraint firstItem="edL-WE-b3m" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="mjW-q9-cXN"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="AtA-gY-NdM" secondAttribute="bottom" constant="30" id="r00-dV-QVS"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="251" height="345"/>
                                         <connections>
+                                            <outlet property="dateLabel" destination="edL-WE-b3m" id="Gos-Dp-GKg"/>
+                                            <outlet property="descriptionText" destination="lsi-0p-nKQ" id="x6m-zo-o6m"/>
                                             <outlet property="imageView" destination="AtA-gY-NdM" id="1j9-Sz-qXz"/>
                                             <outlet property="textLabel" destination="lsi-0p-nKQ" id="YO8-uz-S5O"/>
                                         </connections>

@@ -12,23 +12,28 @@ import UIKit
 protocol CVCellDelegate: AnyObject {
        func didSelect(for cell: CollectionViewCell)
    }
-   
 
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    weak var delegate: CVCellDelegate?
-    
-    func configureCell(for image: PhotoJournal) {
-        guard let image = UIImage(data: image.imageData) else {
-            return
-        }
-        imageView.image = image
+    func configureCell() {
+        imageView.image =
+        textlabel.text = 
     }
+    
+    
+    
+    
+    
+    
     
     @IBAction func settingsButtonClicked(_ sender: UIButton) {
     }
     
 }
+
+

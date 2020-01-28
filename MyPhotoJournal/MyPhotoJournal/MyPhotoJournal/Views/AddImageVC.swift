@@ -9,15 +9,6 @@
 import UIKit
 import AVFoundation // we want to use AVMakeRect() to maintain image aspect ratio
 
-enum photoType {
-    case newImage
-    case editImage
-}
-
-protocol SaveImageDelegate: AnyObject {
-    func didSave(photo: PhotoJournal, type: photoType)
-}
-
 class AddImageVC: UIViewController {
     
     @IBOutlet weak var cancelButton: UIToolbar!
@@ -27,14 +18,6 @@ class AddImageVC: UIViewController {
     @IBOutlet weak var selectPhotoButton: UIToolbar!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    weak var delegate: SaveImageDelegate?
-    
-    public private(set) var type = photoType.newImage
-    
-    private var imagePicker = UIImagePickerController()
-    
-    var photos: PhotoJournal?
-    
     
     
     override func viewDidLayoutSubviews() {
@@ -43,7 +26,7 @@ class AddImageVC: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
         saveButton.isEnabled = false
         }
 

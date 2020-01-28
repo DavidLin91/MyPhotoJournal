@@ -9,22 +9,20 @@
 import UIKit
 import AVFoundation
 
+
+
 class MainVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+
     
     private let dataPersistance = PersistenceHelper(filename: "images.plist")
     
-    var images = [PhotoJournal]() {
+    private var images = [PhotoJournal]() {
         didSet {
             self.collectionView.reloadData()
         }
     }
-    
-    var selectedImage: UIImage? {
-        didSet {
-            appendPhoto()
-        }
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,25 +40,14 @@ class MainVC: UIViewController {
     }
     
     private func appendPhoto() {
-        guard let image = selectedImage else {
-            return
-        }
-        
-        let size = UIScreen.main.bounds.size
-        let rect = AVMakeRect(aspectRatio: image.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
-        let thumbnail = image.resizeImage(to: rect.size.width, height: rect.size.height)
-        guard let imageData = thumbnail.jpegData(compressionQuality: 1.0) else {return}
-        
-        let photo = PhotoJournal(name: "", imageData: imageData, dateCreated: Date())
-        images.insert(photo, at: 0)
-        let indexPath = IndexPath(row:0 , section: 0)
-        collectionView.insertItems(at: [indexPath])
-        
         do {
-            try dataPersistance.create(photo: photo)
+            images = try dataPersistance.loadPhotos()
         } catch {
             print(error)
         }
+    }
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+      //  showMenu()
     }
     
     private func showMenu(for cell: CollectionViewCell) {
@@ -105,25 +92,14 @@ extension MainVC: UICollectionViewDataSource {
             fatalError("Could not dequeue Collection View Cell")
         }
         let image = images[indexPath.row]
-        cell.configureCell(for: image)
+        cell.configureCell(cell: image)
         return cell
     }
 }
 
 extension MainVC: SaveImageDelegate {
-    func didSave(photo: PhotoJournal, type: photoType ) {
-        if type == .newImage {
-            self.images.append(photo)
-                do {
-                    try dataPersistance.create(photo: photo)
-                    
-                } catch {
-                    print("could not create photo")
-                }
-        } else if type == .editImage {
-            print("")
-        }
-    
+    func didSave(thisPhoto: PhotoJournal ) {
+        self.images.append(thisPhoto)
     }
 }
 

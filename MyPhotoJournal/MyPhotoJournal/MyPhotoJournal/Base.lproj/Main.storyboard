@@ -83,6 +83,7 @@
                                                     <state key="normal" title="..."/>
                                                     <connections>
                                                         <action selector="settingsButtonClicked:" destination="5M2-t9-VhI" eventType="touchUpInside" id="U2V-tC-TYF"/>
+                                                        <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jye-S0-lE6"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edL-WE-b3m">
@@ -112,7 +113,6 @@
                                             <outlet property="dateLabel" destination="edL-WE-b3m" id="Gos-Dp-GKg"/>
                                             <outlet property="descriptionText" destination="lsi-0p-nKQ" id="x6m-zo-o6m"/>
                                             <outlet property="imageView" destination="AtA-gY-NdM" id="1j9-Sz-qXz"/>
-                                            <outlet property="textLabel" destination="lsi-0p-nKQ" id="YO8-uz-S5O"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -240,12 +240,9 @@
                         <viewLayoutGuide key="safeArea" id="S53-ds-VAd"/>
                     </view>
                     <connections>
-                        <outlet property="cameraButton" destination="jPX-sd-6lo" id="8sD-Th-D15"/>
-                        <outlet property="cancelButton" destination="kAS-Qv-mvF" id="EZC-a4-ZtX"/>
                         <outlet property="photo" destination="WHV-vC-Ozm" id="YCm-6u-uju"/>
-                        <outlet property="saveButton" destination="fKT-Bu-NTT" id="Ekg-fN-haa"/>
-                        <outlet property="selectPhotoButton" destination="ivY-O2-cr2" id="X1S-Zf-RvP"/>
-                        <outlet property="textField" destination="44b-EH-gN6" id="FQG-Bq-B13"/>
+                        <outlet property="saveButton" destination="fKT-Bu-NTT" id="wT4-NA-hSu"/>
+                        <outlet property="textField" destination="44b-EH-gN6" id="nLG-vE-r7Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09s-Lt-U4o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

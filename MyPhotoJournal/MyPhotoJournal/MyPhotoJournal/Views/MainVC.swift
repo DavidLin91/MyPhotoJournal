@@ -9,12 +9,9 @@
 import UIKit
 import AVFoundation
 
-
-
 class MainVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
-    
     private let dataPersistance = PersistenceHelper(filename: "images.plist")
     
     private var images = [PhotoJournal]() {
@@ -23,7 +20,6 @@ class MainVC: UIViewController {
         }
     }
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -38,6 +34,19 @@ class MainVC: UIViewController {
             print(error)
         }
     }
+    
+    @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
+        addImage()
+    }
+    
+    private func addImage() {
+        guard let addAddImageVC = storyboard?.instantiateViewController(identifier: "AddImageVC") as? AddImageVC else {
+            fatalError()
+        }
+        addAddImageVC.delegate = self
+        present(addAddImageVC, animated: true)
+    }
+    
     
     private func appendPhoto() {
         do {
@@ -79,7 +88,13 @@ class MainVC: UIViewController {
 }
 
 
-extension MainVC: UICollectionViewDelegateFlowLayout {}
+extension MainVC: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//    let maxWidth: CGFloat = UIScreen.main.bounds.size.width // width of the device
+//    let itemWidth: CGFloat = maxWidth * 0.90
+//    return CGSize(width: itemWidth, height: itemWidth)
+//    }
+}
 
 
 extension MainVC: UICollectionViewDataSource {

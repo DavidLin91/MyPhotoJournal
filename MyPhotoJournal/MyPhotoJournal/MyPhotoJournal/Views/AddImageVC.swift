@@ -19,12 +19,14 @@ class AddImageVC: UIViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var textField: UITextView!
     
-    
     weak var delegate: SaveImageDelegate?
+    
+    
+    private var imagePersistence = PersistenceHelper(filename: "images.plist")
     
     private var imagePicker = UIImagePickerController()
     
-    var photos: PhotoJournal?
+    var photos: PhotoJournal!
     
     override func viewDidLayoutSubviews() {
         textField.layer.cornerRadius = 5.0
@@ -77,8 +79,14 @@ class AddImageVC: UIViewController {
             return
         }
         
-        let userPhoto = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textField.text!)
-        delegate?.didSave(thisPhoto: userPhoto)
+        photos = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textField.text!)
+        delegate?.didSave(thisPhoto: photos)
+        do {
+            try? imagePersistence.create(photo: photos)
+        } catch {
+            print("saving error: \(error)")
+        }
+        
         dismiss(animated: true)
     }
     

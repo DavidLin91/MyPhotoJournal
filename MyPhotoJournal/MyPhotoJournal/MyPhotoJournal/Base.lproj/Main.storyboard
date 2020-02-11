@@ -16,19 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="wallPaper" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-aE-lvs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallPaper" id="6cl-hH-b7C">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="832"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-Kw-yia">
-                                <rect key="frame" x="0.0" y="756" width="414" height="106"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" red="0.95970195530000002" green="0.94210463759999996" blue="0.86273360249999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <items>
                                     <barButtonItem width="87" style="plain" systemItem="fixedSpace" id="ca5-oh-DLY" userLabel="Left Space"/>
                                     <barButtonItem title="add button" image="plus" catalog="system" id="hdF-ky-TTF">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="w20-Nj-2li" kind="presentation" identifier="addImageSegue" id="LsS-3F-Iz1"/>
+                                            <action selector="addImageButtonPressed:" destination="BYZ-38-t0r" id="ph5-WH-Zdh"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="155" style="plain" systemItem="fixedSpace" id="Yad-TQ-mkK" userLabel="Mid Space">
@@ -45,9 +45,9 @@
                                 <color key="barTintColor" red="0.27133899083147217" green="0.26700558711654737" blue="0.24681328603767075" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BuQ-hw-ajB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="712"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ut-tt-EML">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ut-tt-EML">
                                     <size key="itemSize" width="251" height="345"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -108,6 +108,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="251" height="345"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="edL-WE-b3m" id="Gos-Dp-GKg"/>
@@ -121,14 +122,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nn3-Kw-yia" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0P9-Gc-Wfi"/>
-                            <constraint firstItem="k9u-aE-lvs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9Oh-Rg-ozl"/>
                             <constraint firstItem="nn3-Kw-yia" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DVp-ZV-FhO"/>
-                            <constraint firstItem="nn3-Kw-yia" firstAttribute="top" secondItem="k9u-aE-lvs" secondAttribute="bottom" symbolic="YES" id="QLT-jk-IKv"/>
-                            <constraint firstItem="k9u-aE-lvs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TPF-LC-aqN"/>
                             <constraint firstItem="BuQ-hw-ajB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Vdu-Z3-b2T"/>
                             <constraint firstItem="BuQ-hw-ajB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="b1Q-Jl-c8c"/>
                             <constraint firstItem="nn3-Kw-yia" firstAttribute="top" secondItem="BuQ-hw-ajB" secondAttribute="bottom" symbolic="YES" id="boS-gf-uUj"/>
-                            <constraint firstItem="k9u-aE-lvs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fyN-gH-9bm"/>
                             <constraint firstItem="BuQ-hw-ajB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nBC-Cv-CNO"/>
                             <constraint firstItem="nn3-Kw-yia" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="u5g-6D-Lhl"/>
                         </constraints>
@@ -174,18 +171,18 @@
         <!--Add ImageVC-->
         <scene sceneID="XmG-2q-0M1">
             <objects>
-                <viewController id="w20-Nj-2li" customClass="AddImageVC" customModule="MyPhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddImageVC" id="w20-Nj-2li" customClass="AddImageVC" customModule="MyPhotoJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3YL-jO-5pq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="wallPaper" translatesAutoresizingMaskIntoConstraints="NO" id="96T-sm-AVx">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-O2-cr2">
-                                <rect key="frame" x="0.0" y="759" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem width="59" style="plain" systemItem="fixedSpace" id="Ggs-pk-vny"/>
@@ -206,7 +203,7 @@
                                 <color key="barTintColor" red="0.27133899080000001" green="0.2670055871" blue="0.24681328599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </toolbar>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-vC-Ozm">
-                                <rect key="frame" x="0.0" y="101" width="414" height="297.5"/>
+                                <rect key="frame" x="0.0" y="145" width="414" height="297.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -215,14 +212,14 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44b-EH-gN6">
-                                <rect key="frame" x="10" y="420" width="394" height="309"/>
+                                <rect key="frame" x="10" y="464" width="394" height="319"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAS-Qv-mvF" userLabel="Top Tool Bar">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="tMY-b4-kQI"/>
@@ -263,6 +260,7 @@
                         <viewLayoutGuide key="safeArea" id="S53-ds-VAd"/>
                     </view>
                     <connections>
+                        <outlet property="photo" destination="WHV-vC-Ozm" id="lay-Ce-fTs"/>
                         <outlet property="saveButton" destination="fKT-Bu-NTT" id="wT4-NA-hSu"/>
                         <outlet property="textField" destination="44b-EH-gN6" id="nLG-vE-r7Y"/>
                     </connections>

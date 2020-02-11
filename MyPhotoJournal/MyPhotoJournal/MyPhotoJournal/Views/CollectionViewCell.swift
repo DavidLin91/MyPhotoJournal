@@ -32,12 +32,6 @@ class CollectionViewCell: UICollectionViewCell {
         dateLabel.text = cell.dateCreated.description
     }
     
-    
-    
-    
-    
-    
-    
     @IBAction func settingsButtonClicked(_ sender: UIButton) {
     }
     

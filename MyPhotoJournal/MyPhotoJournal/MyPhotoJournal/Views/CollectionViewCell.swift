@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol CVCellDelegate: AnyObject {
-    func didSelect(cell: PhotoJournal)
+    func didSelect(for cell: CollectionViewCell)
 }
 
 class CollectionViewCell: UICollectionViewCell {
@@ -20,21 +20,22 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
     
-    public func configureCell(cell: PhotoJournal) {
+    public func configureCell(for cell: PhotoJournal) {
         
         guard let image = UIImage(data: cell.imageData) else {
             return
         }
-        
         imageView.image = image
         descriptionText.text = cell.description
         dateLabel.text = cell.dateCreated.description
     }
     
-    @IBAction func settingsButtonClicked(_ sender: UIButton) {
+    @IBAction func editButtonClicked(_ sender: UIButton) {
+        print("editButtonClicked")
+        delegate?.didSelect(for: self)
     }
-    
 }
 
 

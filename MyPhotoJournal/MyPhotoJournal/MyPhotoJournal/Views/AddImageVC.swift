@@ -28,6 +28,7 @@ class AddImageVC: UIViewController {
     
     var photos: PhotoJournal!
     
+    
     override func viewDidLayoutSubviews() {
         textField.layer.cornerRadius = 5.0
     }
@@ -82,7 +83,7 @@ class AddImageVC: UIViewController {
         photos = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textField.text!)
         delegate?.didSave(thisPhoto: photos)
         do {
-            try? imagePersistence.create(photo: photos)
+            try imagePersistence.create(photo: photos)
         } catch {
             print("saving error: \(error)")
         }

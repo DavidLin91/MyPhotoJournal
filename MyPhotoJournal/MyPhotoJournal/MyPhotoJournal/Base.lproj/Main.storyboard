@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -77,33 +77,36 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXb-EI-V94">
-                                                    <rect key="frame" x="206" y="227" width="30" height="30"/>
+                                                    <rect key="frame" x="205" y="227" width="31" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="..."/>
                                                     <connections>
-                                                        <action selector="settingsButtonClicked:" destination="5M2-t9-VhI" eventType="touchUpInside" id="U2V-tC-TYF"/>
-                                                        <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jye-S0-lE6"/>
+                                                        <action selector="editButtonClicked:" destination="5M2-t9-VhI" eventType="touchUpInside" id="WOo-fK-l3X"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edL-WE-b3m">
-                                                    <rect key="frame" x="15" y="232" width="36" height="21"/>
+                                                    <rect key="frame" x="15" y="232" width="140" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="140" id="0Mg-Rf-WEk"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="edL-WE-b3m" secondAttribute="bottom" constant="12" id="5Ai-de-w8R"/>
                                                 <constraint firstAttribute="bottom" secondItem="lsi-0p-nKQ" secondAttribute="bottom" constant="15" id="8hi-kL-Fxl"/>
+                                                <constraint firstItem="sXb-EI-V94" firstAttribute="leading" secondItem="edL-WE-b3m" secondAttribute="trailing" constant="50" id="IWl-9p-Ado"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="PHr-Wa-tr8"/>
+                                                <constraint firstItem="edL-WE-b3m" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="V5X-As-j2C"/>
                                                 <constraint firstAttribute="trailing" secondItem="lsi-0p-nKQ" secondAttribute="trailing" constant="15" id="Wwc-ib-Rdz"/>
                                                 <constraint firstAttribute="trailing" secondItem="sXb-EI-V94" secondAttribute="trailing" constant="15" id="ZXb-eb-orW"/>
                                                 <constraint firstAttribute="trailing" secondItem="AtA-gY-NdM" secondAttribute="trailing" constant="15" id="elq-eu-Uk0"/>
                                                 <constraint firstItem="AtA-gY-NdM" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="hXX-ry-k47"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="sXb-EI-V94" secondAttribute="bottom" constant="8" id="hiC-MK-sZR"/>
                                                 <constraint firstItem="AtA-gY-NdM" firstAttribute="top" secondItem="XRq-Wb-Twf" secondAttribute="top" constant="15" id="htB-tI-31o"/>
-                                                <constraint firstItem="edL-WE-b3m" firstAttribute="leading" secondItem="XRq-Wb-Twf" secondAttribute="leading" constant="15" id="mjW-q9-cXN"/>
+                                                <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="edL-WE-b3m" secondAttribute="bottom" constant="12" id="kEt-U8-aBz"/>
                                                 <constraint firstItem="lsi-0p-nKQ" firstAttribute="top" secondItem="AtA-gY-NdM" secondAttribute="bottom" constant="30" id="r00-dV-QVS"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -271,10 +274,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="photo" catalog="system" width="64" height="46"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="camera.fill" catalog="system" width="128" height="96"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="wallPaper" width="570" height="756"/>
     </resources>
 </document>

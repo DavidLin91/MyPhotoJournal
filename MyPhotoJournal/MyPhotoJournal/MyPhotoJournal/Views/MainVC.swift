@@ -107,7 +107,7 @@ extension MainVC: UICollectionViewDataSource {
             fatalError("Could not dequeue Collection View Cell")
         }
         let image = images[indexPath.row]
-        cell.configureCell(cell: image)
+        cell.configureCell(for: image)
         return cell
     }
 }

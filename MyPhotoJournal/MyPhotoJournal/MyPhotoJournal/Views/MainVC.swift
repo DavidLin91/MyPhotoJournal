@@ -37,6 +37,7 @@ class MainVC: UIViewController {
     
     @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
         addImage()
+        editImage()
     }
     
     
@@ -60,6 +61,14 @@ class MainVC: UIViewController {
     }
     
     
+    private func editImage(_ photo: PhotoJournal? = nil) {
+        
+    }
+    
+    
+    
+    
+    
     
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
@@ -75,7 +84,7 @@ class MainVC: UIViewController {
         }
         let alertMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
-   //         self?.showViewController((self?.photos[indexPath.row]))
+            self?.editImage(self?.photos[indexPath.row])
         }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
             do{
@@ -118,6 +127,7 @@ extension MainVC: UICollectionViewDataSource {
         }
         let image = images[indexPath.row]
         cell.configureCell(for: image)
+        cell.delegate = self
         return cell
     }
 }

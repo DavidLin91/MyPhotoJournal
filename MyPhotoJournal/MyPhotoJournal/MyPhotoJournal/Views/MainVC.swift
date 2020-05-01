@@ -39,6 +39,9 @@ class MainVC: UIViewController {
         addImage()
     }
     
+    
+    
+    
     private func addImage() {
         guard let addAddImageVC = storyboard?.instantiateViewController(identifier: "AddImageVC") as? AddImageVC else {
             fatalError()
@@ -60,16 +63,19 @@ class MainVC: UIViewController {
     
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-    
+    // empty here
     }
     
-    private func showMenu(for cell: CollectionViewCell) {
+    
+    
+    
+    private func showAlerts(for cell: CollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        let optionsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
-//            self?.showViewController(self?.photos[indexPath.row])
+   //         self?.showViewController((self?.photos[indexPath.row]))
         }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
             do{
@@ -83,10 +89,10 @@ class MainVC: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] (action) in
             self?.dismiss(animated: true)
         }
-        optionsMenu.addAction(edit)
-        optionsMenu.addAction(delete)
-        optionsMenu.addAction(cancel)
-        present(optionsMenu, animated: true, completion: nil)
+        alertMenu.addAction(edit)
+        alertMenu.addAction(delete)
+        alertMenu.addAction(cancel)
+        present(alertMenu, animated: true, completion: nil)
     }
     
 }
@@ -119,6 +125,12 @@ extension MainVC: UICollectionViewDataSource {
 extension MainVC: SaveImageDelegate {
     func didSave(thisPhoto: PhotoJournal ) {
         self.images.append(thisPhoto)
+    }
+}
+
+extension MainVC: CVCellDelegate {
+    func didSelect(for cell: CollectionViewCell) {
+        showAlerts(for: cell)
     }
 }
 

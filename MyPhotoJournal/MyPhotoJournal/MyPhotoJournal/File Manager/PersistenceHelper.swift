@@ -68,6 +68,12 @@ class PersistenceHelper {
   }
     
   public func create(photo: PhotoJournal) throws {
+    do {
+     photos = try loadPhotos()
+    } catch {
+        print(error)
+    }
+//    print(photos.count)
     photos.append(photo)
     do {
       try save()

@@ -9,6 +9,12 @@
 import UIKit
 import AVFoundation // we want to use AVMakeRect() to maintain image aspect ratio
 
+enum currentState {
+    case editing
+    case adding
+}
+
+
 protocol SaveImageDelegate: AnyObject {
     func didSave(thisPhoto: PhotoJournal)
 }
@@ -21,6 +27,7 @@ class AddImageVC: UIViewController {
     
     weak var delegate: SaveImageDelegate?
     
+    var state = currentState.editing
     
     private var imagePersistence = PersistenceHelper(filename: "images.plist")
     
@@ -28,6 +35,7 @@ class AddImageVC: UIViewController {
     
     var photos: PhotoJournal!
     
+    var editPhoto: UIImage?
     
     override func viewDidLayoutSubviews() {
         textField.layer.cornerRadius = 5.0
@@ -37,7 +45,22 @@ class AddImageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
+        updateState()
     }
+    
+    
+    func updateState() {
+        guard let image = photos else { return }
+        if state == .adding {
+            photo.image = nil
+        } else if state == .editing {
+            photo.image = UIImage(data: photos.imageData)
+        }
+    }
+    
+    
+    
+    
     
     @IBAction func selectPhotoButtonClicked(_ sender: UIBarButtonItem) {
         imagePicker.delegate = self

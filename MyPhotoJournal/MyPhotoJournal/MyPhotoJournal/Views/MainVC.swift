@@ -65,21 +65,23 @@ class MainVC: UIViewController {
         }
         editVC.delegate = self
         editVC.photos = photo
+        editVC.editPhoto = UIImage(data: photo!.imageData)
+       // editVC.photo.image = UIImage(data: photo!.imageData)
+        print(photo)
         present(editVC, animated: true)
     
         let index = images.firstIndex { $0.imageData == editVC.photos.imageData}
+      
         guard let itemIndex = index else { return }
-        let oldPhoto = images[itemIndex]
+        let currentPhoto = images[itemIndex]
         
-        guard let photo = editVC.photos else {
-            return
-        }
-        update(old: oldPhoto, with: photo)
+        guard let photo = editVC.photos else { return }
+        update(current: currentPhoto, with: photo)
     }
     
-    private func update(old: PhotoJournal, with new: PhotoJournal) {
-        dataPersistance.updateItems(old, new)
-        appendPhoto()
+    private func update(current: PhotoJournal, with new: PhotoJournal) {
+        dataPersistance.updateItems(current, new)
+       // appendPhoto()
     }
     
     

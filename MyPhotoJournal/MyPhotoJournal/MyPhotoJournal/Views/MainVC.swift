@@ -37,10 +37,7 @@ class MainVC: UIViewController {
     
     @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
         addImage()
-        editImage()
     }
-    
-    
     
     
     private func addImage() {
@@ -62,10 +59,28 @@ class MainVC: UIViewController {
     
     
     private func editImage(_ photo: PhotoJournal? = nil) {
+        guard let editVC = storyboard?.instantiateViewController(identifier: "AddImageVC") as?
+            AddImageVC else {
+            fatalError()
+        }
+        editVC.delegate = self
+        editVC.photos = photo
+        present(editVC, animated: true)
+    
+        let index = images.firstIndex { $0.imageData == editVC.photos.imageData}
+        guard let itemIndex = index else { return }
+        let oldPhoto = images[itemIndex]
         
+        guard let photo = editVC.photos else {
+            return
+        }
+        update(old: oldPhoto, with: photo)
     }
     
-    
+    private func update(old: PhotoJournal, with new: PhotoJournal) {
+        dataPersistance.updateItems(old, new)
+        appendPhoto()
+    }
     
     
     
@@ -84,7 +99,7 @@ class MainVC: UIViewController {
         }
         let alertMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
-            self?.editImage(self?.photos[indexPath.row])
+            self?.editImage(self?.images[indexPath.row])
         }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
             do{

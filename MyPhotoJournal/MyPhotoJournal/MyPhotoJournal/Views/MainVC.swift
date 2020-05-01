@@ -55,8 +55,12 @@ class MainVC: UIViewController {
             print(error)
         }
     }
+    
+    
+    
+    
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-      //  showMenu()
+    
     }
     
     private func showMenu(for cell: CollectionViewCell) {

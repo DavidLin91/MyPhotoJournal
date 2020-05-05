@@ -11,5 +11,5 @@ import Foundation
 struct PhotoJournal: Codable & Equatable {
     let imageData: Data
     let dateCreated: Date
-    let description: String
+    var description: String
 }

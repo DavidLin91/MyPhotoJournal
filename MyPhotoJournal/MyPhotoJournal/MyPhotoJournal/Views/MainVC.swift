@@ -45,6 +45,7 @@ class MainVC: UIViewController {
             fatalError()
         }
         addAddImageVC.delegate = self
+        addAddImageVC.state = .adding
         present(addAddImageVC, animated: true)
     }
     
@@ -65,18 +66,25 @@ class MainVC: UIViewController {
         }
         editVC.delegate = self
         editVC.photos = photo
-        editVC.editPhoto = UIImage(data: photo!.imageData)
-       // editVC.photo.image = UIImage(data: photo!.imageData)
-        print(photo)
-        present(editVC, animated: true)
-    
-        let index = images.firstIndex { $0.imageData == editVC.photos.imageData}
-      
-        guard let itemIndex = index else { return }
-        let currentPhoto = images[itemIndex]
+        editVC.state = .editing
         
-        guard let photo = editVC.photos else { return }
-        update(current: currentPhoto, with: photo)
+//        editVC.editPhoto = UIImage(data: photo!.imageData)
+       // editVC.photo.image = UIImage(data: photo!.imageData)
+        present(editVC, animated: true)
+        
+        if editVC.state == .editing {
+             let index = images.firstIndex { $0.imageData == editVC.photos.imageData}
+             guard let itemIndex = index else { return }
+
+            let currentPhoto = images[itemIndex]
+            
+            guard let photo = editVC.photos else { return }
+            update(current: currentPhoto, with: photo)
+        } else {
+            editVC.state = .adding
+                return
+        }
+        
     }
     
     private func update(current: PhotoJournal, with new: PhotoJournal) {
@@ -150,8 +158,12 @@ extension MainVC: UICollectionViewDataSource {
 }
 
 extension MainVC: SaveImageDelegate {
-    func didSave(thisPhoto: PhotoJournal ) {
-        self.images.append(thisPhoto)
+    func didSave(thisPhoto: PhotoJournal, state: CurrentState) {
+        if state == .adding {
+            self.images.append(thisPhoto)
+        } else {
+            editImage(thisPhoto)
+        }
     }
 }
 

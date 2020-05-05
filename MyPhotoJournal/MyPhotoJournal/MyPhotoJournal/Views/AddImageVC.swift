@@ -9,25 +9,25 @@
 import UIKit
 import AVFoundation // we want to use AVMakeRect() to maintain image aspect ratio
 
-enum currentState {
+enum CurrentState {
     case editing
     case adding
 }
 
 
 protocol SaveImageDelegate: AnyObject {
-    func didSave(thisPhoto: PhotoJournal)
+    func didSave(thisPhoto: PhotoJournal, state: CurrentState)
 }
 
 class AddImageVC: UIViewController {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var textView: UITextView!
     
     weak var delegate: SaveImageDelegate?
     
-    var state = currentState.editing
+    var state = CurrentState.adding
     
     private var imagePersistence = PersistenceHelper(filename: "images.plist")
     
@@ -38,23 +38,30 @@ class AddImageVC: UIViewController {
     var editPhoto: UIImage?
     
     override func viewDidLayoutSubviews() {
-        textField.layer.cornerRadius = 5.0
+        textView.layer.cornerRadius = 5.0
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.isEnabled = false
+        //        saveButton.isEnabled = false
+        textView.delegate = self
         updateState()
+        print("current state: \(state)")
     }
     
     
     func updateState() {
+        print("current state: \(state)")
         guard let image = photos else { return }
-        if state == .adding {
-            photo.image = nil
-        } else if state == .editing {
-            photo.image = UIImage(data: photos.imageData)
+          if state == .editing {
+            textView.text = image.description
+            photo.image = UIImage(data: image.imageData)
+         //   delegate?.didSave(thisPhoto: image, state: .editing)
+            state = .editing
+          } else if state == .adding {
+          state = .adding
+         // savePhoto()
         }
     }
     
@@ -65,7 +72,7 @@ class AddImageVC: UIViewController {
     @IBAction func selectPhotoButtonClicked(_ sender: UIBarButtonItem) {
         imagePicker.delegate = self
         present(imagePicker, animated: true)
-        saveButton.isEnabled = true
+        //        saveButton.isEnabled = true
     }
     
     
@@ -81,7 +88,15 @@ class AddImageVC: UIViewController {
     
     
     @IBAction func savedButtonClicked(_ sender: UIBarButtonItem) {
-        savePhoto()
+         
+        if state == .adding {
+            savePhoto()
+        } else if state == . editing {
+            updateState()
+        }
+        
+        
+        dismiss(animated: true)
     }
     
     func savePhoto() {
@@ -103,14 +118,14 @@ class AddImageVC: UIViewController {
             return
         }
         
-        photos = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textField.text!)
-        delegate?.didSave(thisPhoto: photos)
+        photos = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textView.text!)
+//        delegate?.didSave(thisPhoto: photos, state: .adding)
         do {
             try imagePersistence.create(photo: photos)
         } catch {
             print("saving error: \(error)")
         }
-        
+        delegate?.didSave(thisPhoto: photos, state: .adding)
         dismiss(animated: true)
     }
     
@@ -130,10 +145,18 @@ extension AddImageVC: UIImagePickerControllerDelegate, UINavigationControllerDel
 
 extension UIImage{
     func resizeImage(to width: CGFloat, height: CGFloat) -> UIImage {
-            let size = CGSize(width: width, height: height)
-            let renderer = UIGraphicsImageRenderer(size: size)
-            return renderer.image { (context) in
-                self.draw(in: CGRect(origin: .zero, size: size))
+        let size = CGSize(width: width, height: height)
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { (context) in
+            self.draw(in: CGRect(origin: .zero, size: size))
         }
+    }
+}
+
+
+extension AddImageVC: UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        photos.description = textField.text ?? ""
+        return true
     }
 }

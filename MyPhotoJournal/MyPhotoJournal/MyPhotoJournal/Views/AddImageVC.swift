@@ -14,10 +14,13 @@ enum CurrentState {
     case adding
 }
 
-
 protocol SaveImageDelegate: AnyObject {
     func didSave(thisPhoto: PhotoJournal, state: CurrentState)
 }
+
+
+
+
 
 class AddImageVC: UIViewController {
     
@@ -47,17 +50,39 @@ class AddImageVC: UIViewController {
         //        saveButton.isEnabled = false
         textView.delegate = self
         updateState()
-        print("current state: \(state)")
     }
     
     
     func updateState() {
         print("current state: \(state)")
-        guard let image = photos else { return }
+
+        guard var image = photos else { return }
           if state == .editing {
+            print(textView.text!)
             textView.text = image.description
+            print(image.description)
+            
+            guard let thisImage = photo.image else {
+                return
+            }
+            
+            // the size to resize image
+            let size = UIScreen.main.bounds.size
+            
+            // we will maintain the aspect ratio of the image
+            let rect = AVMakeRect(aspectRatio: thisImage.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
+            
+            // resize image
+            let resized = thisImage.resizeImage(to: rect.size.width, height: rect.size.height)
+            
+            guard let photoData = resized.jpegData(compressionQuality: 1.0) else {
+                return
+            }
+            
+            let new = PhotoJournal(imageData: photoData, dateCreated: Date(), description: textView.text)
+            //image.description = textView.text
             photo.image = UIImage(data: image.imageData)
-         //   delegate?.didSave(thisPhoto: image, state: .editing)
+            delegate?.didSave(thisPhoto: new, state: .editing)
             state = .editing
           } else if state == .adding {
           state = .adding

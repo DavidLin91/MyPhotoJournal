@@ -11,6 +11,8 @@ import AVFoundation
 
 class MainVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var state = CurrentState.adding
 
     private let dataPersistance = PersistenceHelper(filename: "images.plist")
     
@@ -36,6 +38,7 @@ class MainVC: UIViewController {
     }
     
     @IBAction func addImageButtonPressed(_ sender: UIBarButtonItem) {
+        state = .adding
         addImage()
     }
     
@@ -45,12 +48,12 @@ class MainVC: UIViewController {
             fatalError()
         }
         addAddImageVC.delegate = self
-        addAddImageVC.state = .adding
+        state = .adding
         present(addAddImageVC, animated: true)
     }
     
     
-    private func appendPhoto() {
+    private func loadPhotos() {
         do {
             images = try dataPersistance.loadPhotos()
         } catch {
@@ -67,17 +70,13 @@ class MainVC: UIViewController {
         editVC.delegate = self
         editVC.photos = photo
         editVC.state = .editing
-        
-//        editVC.editPhoto = UIImage(data: photo!.imageData)
-       // editVC.photo.image = UIImage(data: photo!.imageData)
         present(editVC, animated: true)
         
         if editVC.state == .editing {
              let index = images.firstIndex { $0.imageData == editVC.photos.imageData}
              guard let itemIndex = index else { return }
-
             let currentPhoto = images[itemIndex]
-            
+           // currentPhoto.description = editVC.textView.description
             guard let photo = editVC.photos else { return }
             update(current: currentPhoto, with: photo)
         } else {
@@ -89,7 +88,7 @@ class MainVC: UIViewController {
     
     private func update(current: PhotoJournal, with new: PhotoJournal) {
         dataPersistance.updateItems(current, new)
-       // appendPhoto()
+        loadPhotos()
     }
     
     
@@ -109,6 +108,7 @@ class MainVC: UIViewController {
         }
         let alertMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
+            self?.state = .editing
             self?.editImage(self?.images[indexPath.row])
         }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
